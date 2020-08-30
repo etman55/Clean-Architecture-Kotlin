@@ -1,7 +1,8 @@
 package com.atef.core.preference
 
 import android.content.SharedPreferences
-import com.google.gson.Gson
+import io.reactivex.Completable
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
@@ -12,39 +13,42 @@ import javax.inject.Inject
 
 class PreferencesGateway @Inject constructor(val prefs: SharedPreferences) {
 
-    inline fun <reified T : Any> save(key: String, value: T) {
-        return prefs
-            .edit()
-            .apply { putValue(key, value) }
-            .apply()
+
+    inline fun <reified T : Any> save(key: String, value: T): Single<T> {
+        return Single.fromCallable {
+            prefs
+                .edit()
+                .apply { putValue(key, value) }
+                .apply()
+            value
+        }
     }
 
-    inline fun <reified T : Any> load(key: String, defaultValue: T): T {
-        return prefs.run { getValue(key, defaultValue) }
+    @Throws(ClassCastException::class)
+    inline fun <reified T : Any> load(key: String, defaultValue: T): Single<T> {
+        return Single.fromCallable {
+            prefs.run { getValue(key, defaultValue) }
+        }
     }
 
-    fun isSaved(key: String): Boolean {
-        return prefs.contains(key)
+    fun isSaved(key: String): Single<Boolean> {
+        return Single.fromCallable {
+            prefs.contains(key)
+        }
     }
 
-    fun remove(key: String) {
-        return prefs
-            .edit()
-            .remove(key)
-            .apply()
+    fun remove(key: String): Completable {
+        return Completable.fromAction {
+            prefs
+                .edit()
+                .remove(key)
+                .apply()
+        }
     }
 
     companion object {
         const val DEFAULT_VALUE = ""
     }
-}
-
-inline fun <reified T : Any> Any.fromObjectToString(targetClass: Class<T>): String {
-    return Gson().toJson(this, targetClass)
-}
-
-fun String.fromStringToObject(targetClass: Class<*>): Any? {
-    return Gson().fromJson(this, targetClass)
 }
 
 inline fun <reified T : Any> SharedPreferences.Editor.putValue(
