@@ -1,6 +1,7 @@
 package com.atef.core.preference
 
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -49,6 +50,14 @@ class PreferencesGateway @Inject constructor(val prefs: SharedPreferences) {
     companion object {
         const val DEFAULT_VALUE = ""
     }
+}
+
+inline fun <reified T : Any> Any.fromObjectToString(targetClass: Class<T>): String {
+    return Gson().toJson(this, targetClass)
+}
+
+fun String.fromStringToObject(targetClass: Class<*>): Any? {
+    return Gson().fromJson(this, targetClass)
 }
 
 inline fun <reified T : Any> SharedPreferences.Editor.putValue(
