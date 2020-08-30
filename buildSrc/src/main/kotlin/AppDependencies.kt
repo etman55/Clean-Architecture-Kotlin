@@ -242,3 +242,12 @@ object Dependencies {
             "com.squareup.okhttp3:mockwebserver:${Version.mockWebServer}"
     }
 }
+
+object ProjectModules {
+    const val app: String = ":app"
+    const val domain: String = ":domain"
+}
+
+val modules = listOf(
+    ProjectModules.app, ProjectModules.domain
+)
