@@ -1,2 +1,2 @@
-include(":app", ":domain", ":core")
+include(":app", ":domain", ":core", ":data")
 
