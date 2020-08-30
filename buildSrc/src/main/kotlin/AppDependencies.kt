@@ -246,8 +246,5 @@ object Dependencies {
 object ProjectModules {
     const val app: String = ":app"
     const val domain: String = ":domain"
+    const val core: String = ":core"
 }
-
-val modules = listOf(
-    ProjectModules.app, ProjectModules.domain
-)
