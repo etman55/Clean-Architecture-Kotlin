@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/userManagementNavGraph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.atef.sample.feature.splash.SplashFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.atef.sample.feature.usermanagement.login.LoginFragment"
+        android:label="loginFragment"
+        tools:layout="@layout/fragment_login">
+        <deepLink
+            android:id="@+id/deepLink_to_loginScreen"
+            app:uri="app://navigation/login" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.atef.sample.feature.usermanagement.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_signUpFragment_to_verifyEmailFragment"
+            app:destination="@id/verifyEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyEmailFragment"
+        android:name="com.atef.sample.feature.usermanagement.verifyemail.VerifyEmailFragment"
+        android:label="fragment_verify_email"
+        tools:layout="@layout/fragment_verify_email">
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+
+
+</navigation>

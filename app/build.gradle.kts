@@ -13,6 +13,9 @@ plugins {
     kotlin(kotlinAndroid)
     kotlin(kotlinAndroidExtension)
     kotlin(kotlinKapt)
+    id("kotlin-android")
+    safeArgs
+    daggerHilt
 }
 
 android {
@@ -54,8 +57,18 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(ProjectModules.core))
+    implementation(project(ProjectModules.data))
+    implementation(project(ProjectModules.domain))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
     implementAll(View.components)
-    implementAll(Kotlin.components)
+    implementation(Kotlin.stdlib)
+    implementation(Network.moshi)
+    implementation(Misc.timber)
+    implementAll(RX.components)
+    implementAll(DI.components)
+    implementAll(FireBase.components)
 
     AndroidX.run {
         implementation(activity)
@@ -66,6 +79,9 @@ dependencies {
         implementation(viewModel)
         implementation(lifecycleReactiveStreams)
     }
+
+    kapt(DI.AnnotationProcessor.daggerHiltGoogle)
+    kapt(DI.AnnotationProcessor.daggerHiltAndroidx)
 
     testImplementation(Test.junit)
     androidTestImplementation(Test.espresso)

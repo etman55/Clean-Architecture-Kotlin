@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Clean-Architecture-Kotlin</string>
+    <!--notification_channel_id-->
+    <string name="default_notification_channel_id" translatable="false">clean-architecture-kotlin-channel</string>
+    <!--Splash-->
+    <string name="title_screen_splash">@string/app_name</string>
+    <string name="splash_description">description</string>
+    <!--Login-->
+    <string name="login_label">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_register">if you don\'t have account you can</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_password">Password</string>
+    <string name="invalid_credentials">Invalid credentials</string>
+    <!--Register-->
+    <string name="registration_label">Registration</string>
+    <string name="prompt_login">if you have account you can</string>
+    <!--Error-->
+    <string name="error_network">No Internet connection</string>
+    <string name="error_timeout">No Response, please try again!</string>
+    <string name="error_unexpected">Oops! An error has occurred, Please try again.</string>
+    <string name="error">Error</string>
+    <!--app_update-->
+    <string name="app_update_title">New version %s is available</string>
+    <string name="app_update_description">Please update app for seamless experience.</string>
+    <string name="app_update_positive">Update</string>
+    <string name="app_update_exit">Exit!</string>
+    <string name="app_update_cancel">Cancel</string>
 </resources>

@@ -9,4 +9,22 @@
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <style name="App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxBackgroundColor">@android:color/white</item>
+        <item name="boxCornerRadiusBottomEnd">4dp</item>
+        <item name="boxCornerRadiusTopStart">4dp</item>
+        <item name="boxCornerRadiusTopEnd">4dp</item>
+        <item name="boxCornerRadiusBottomStart">4dp</item>
+    </style>
+
+    <style name="CodeTextInputEditText">
+        <item name="android:background">@drawable/code_background</item>
+    </style>
+
 </resources>
