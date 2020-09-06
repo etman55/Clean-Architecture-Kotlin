@@ -5,8 +5,7 @@ import com.atef.data.remote.base.mapper.RemoteMapper
 import com.atef.data.remote.feature.usermanagement.model.response.SignUpResponse
 import javax.inject.Inject
 
-class SignUpRemoteMapper @Inject constructor(
-) : RemoteMapper<SignUpResponse, UserDataModel> {
+class SignUpRemoteMapper @Inject constructor() : RemoteMapper<SignUpResponse, UserDataModel> {
     override fun mapFromModel(model: SignUpResponse): UserDataModel {
         return with(model.data!!) {
             UserDataModel(

@@ -21,5 +21,4 @@ interface UserManagementCache {
     fun getToken(key: String): Single<String>
 
     fun logout(): Completable
-
 }

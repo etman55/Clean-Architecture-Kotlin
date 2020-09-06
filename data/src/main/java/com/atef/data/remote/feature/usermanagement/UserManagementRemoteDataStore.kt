@@ -3,7 +3,12 @@ package com.atef.data.remote.feature.usermanagement
 import com.atef.data.data.feature.usermanagement.contract.UserManagementRemote
 import com.atef.data.data.feature.usermanagement.model.UserDataModel
 import com.atef.data.remote.feature.usermanagement.mapper.UserRemoteMapper
-import com.atef.data.remote.feature.usermanagement.model.request.*
+import com.atef.data.remote.feature.usermanagement.model.request.ForgetPasswordRequest
+import com.atef.data.remote.feature.usermanagement.model.request.LoginCredentialRequest
+import com.atef.data.remote.feature.usermanagement.model.request.ResetPasswordRequest
+import com.atef.data.remote.feature.usermanagement.model.request.SignUpRequest
+import com.atef.data.remote.feature.usermanagement.model.request.UpdateUserRequest
+import com.atef.data.remote.feature.usermanagement.model.request.VerifyEmailRequest
 import com.atef.data.remote.feature.usermanagement.model.response.LoginResponse
 import com.atef.data.remote.feature.usermanagement.model.response.SignUpResponse
 import com.atef.data.remote.feature.usermanagement.service.UserManagementService

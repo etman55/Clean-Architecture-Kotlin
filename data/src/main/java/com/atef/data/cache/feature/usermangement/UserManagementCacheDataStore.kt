@@ -9,8 +9,8 @@ import com.atef.data.data.feature.usermanagement.model.UserDataModel
 import com.atef.data.remote.base.interceptor.RequestHeaders
 import io.reactivex.Completable
 import io.reactivex.Single
-import timber.log.Timber
 import javax.inject.Inject
+import timber.log.Timber
 
 class UserManagementCacheDataStore @Inject constructor(
     private val preferencesGateway: PreferencesGateway

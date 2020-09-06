@@ -9,9 +9,7 @@ import io.reactivex.Single
 import io.reactivex.functions.Function
 import java.io.IOException
 import java.lang.reflect.Type
-import java.net.ConnectException
 import java.net.SocketException
-import java.net.SocketTimeoutException
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.HttpException
@@ -90,8 +88,8 @@ class ErrorHandlingCallAdapterFactory private constructor() : CallAdapter.Factor
         private fun convertToRemoteException(throwable: Throwable): Throwable {
             return when (throwable) {
                 is HttpException -> handleHttpException(throwable)
-                is IOException -> handleNetworkException(throwable)
-                is SocketException -> RemoteException.timeoutError(throwable as IOException)
+                is IOException -> throwable
+                is SocketException -> throwable
                 else ->
                     // We don't know what happened. We need to simply convert to an unknown error
                     RemoteException.unexpectedError(throwable)
@@ -103,24 +101,12 @@ class ErrorHandlingCallAdapterFactory private constructor() : CallAdapter.Factor
          */
         private fun handleHttpException(throwable: HttpException): Throwable {
             return when (throwable.code()) {
-                400 -> RemoteException.httpErrorWithObject(throwable, retrofit)
+                400 -> RemoteException.authenticationError(throwable, retrofit)
                 422 -> {
                     // on out api 422's get metadata in the response. Adjust logic here based on your needs
                     RemoteException.httpErrorWithObject(throwable, retrofit)
                 }
                 else -> RemoteException.httpError(throwable, retrofit)
-            }
-        }
-
-        /**
-         * A network error happened
-         */
-        private fun handleNetworkException(ioException: IOException): Throwable {
-            return when (ioException) {
-                is ConnectException -> RemoteException.networkError(ioException)
-                is SocketTimeoutException, is SocketException ->
-                    RemoteException.timeoutError(ioException)
-                else -> RemoteException.networkError(ioException)
             }
         }
     }

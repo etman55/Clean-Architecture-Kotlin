@@ -11,8 +11,7 @@ import javax.inject.Inject
  * @phone +201090705106.
  */
 
-class UserRemoteMapper @Inject constructor(
-) : RemoteMapper<UserModel, UserDataModel> {
+class UserRemoteMapper @Inject constructor() : RemoteMapper<UserModel, UserDataModel> {
     override fun mapFromModel(model: UserModel): UserDataModel {
         return with(model) {
             UserDataModel(

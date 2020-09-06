@@ -8,11 +8,10 @@ package com.atef.domain.base.errorhandling
 sealed class ErrorEntity {
     object Network : ErrorEntity()
     object NotFound : ErrorEntity()
-    object UnAuthorized : ErrorEntity()
-    object UnProcessableEntity : ErrorEntity()
     object FileTooLarge : ErrorEntity()
     object AccessDenied : ErrorEntity()
     object ServiceUnavailable : ErrorEntity()
     object ServiceError : ErrorEntity()
     object Unknown : ErrorEntity()
+    data class ApiError(val errorMessage: String? = null) : ErrorEntity()
 }

@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 class PreferencesGateway @Inject constructor(val prefs: SharedPreferences) {
 
-
     inline fun <reified T : Any> save(key: String, value: T): Single<T> {
         return Single.fromCallable {
             prefs

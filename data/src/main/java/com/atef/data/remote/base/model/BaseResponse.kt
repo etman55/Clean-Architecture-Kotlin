@@ -7,6 +7,6 @@ import com.squareup.moshi.Json
 open class BaseResponse {
     @Json(name = "status_code")
     val statusCode: Int? = null
-    var errors: List<String?>? = null
+    var errors: List<String>? = null
     val message: String? = null
 }

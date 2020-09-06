@@ -76,31 +76,6 @@ class RemoteException(
             error.deserializeBaseResponse()
             return error
         }
-
-        fun networkError(exception: IOException): RemoteException {
-            return RemoteException(
-                exception.message,
-                null,
-                null,
-                null,
-                Kind.NETWORK,
-                exception,
-                null
-            )
-        }
-
-        fun timeoutError(exception: IOException): RemoteException {
-            return RemoteException(
-                exception.message,
-                null,
-                null,
-                null,
-                Kind.TIMEOUT,
-                exception,
-                null
-            )
-        }
-
         fun unexpectedError(exception: Throwable): RemoteException {
             return RemoteException(
                 exception.message,
@@ -139,10 +114,6 @@ class RemoteException(
     }
 
     sealed class Kind {
-        /** An [IOException] occurred while communicating to the server.  */
-        object NETWORK : Kind()
-        /** An [IOException].  */
-        object TIMEOUT : Kind()
         /** A non-200 HTTP status code was received from the server.  */
         object HTTP : Kind()
         object HTTP422WithDATA : Kind()
